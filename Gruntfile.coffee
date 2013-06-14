@@ -28,6 +28,9 @@ module.exports = (grunt) ->
                 files:
                     'gh-pages/bundle.min.js': ['gh-pages/bundle.js']
         htmlmin:
+            options:
+                removeComments: true
+                collapseWhitespace: true
             ghpages:
                 files:
                     'gh-pages/index.html':'index.html'
