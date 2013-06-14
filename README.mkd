@@ -1,0 +1,12 @@
+minimatch-test
+==============
+
+A simple static web page that makes it very easy to test globs against the node
+minimatch module.
+
+
+I made this out of my own need to quickly test and see live results / updates
+for what things my gruntfile globs could / would match.
+
+
+[http://github.io/pthrasher/minimatch-test](http://github.io/pthrasher/minimatch-test)
