@@ -10,16 +10,18 @@ $ ->
     processMatches = _.debounce ->
         matched = []
         val = input.val()
-        for line in source.val().split('\n')
-            if minimatch(line, val)
-                matched.push line
+        ul = $ '<ul><li>0 matches</li></ul>'
+        unless val is ''
+            for line in source.val().split('\n')
+                if minimatch(line, val)
+                    matched.push line
 
-        if matched.length
-            ul = $ '<ul></ul>'
-            for match in matched
-                ul.append "<li>#{match}</li>"
-        else
-            ul = $ '<ul><li>0 matches</li></ul>'
+            if matched.length
+                ul = $ '<ul></ul>'
+                for match in matched
+                    ul.append "<li>#{match}</li>"
+            else
+                ul = $ '<ul><li>0 matches</li></ul>'
         matches.html ul
         true
     , 150
@@ -30,7 +32,7 @@ $ ->
         if filterText is ''
             $(lis).show()
             return
-        filterRe = new RegExp ".*#{filterText}.*", 'gi'
+        filterRe = new RegExp "#{filterText}", 'gi'
         toHide = []
         toShow = []
         for li in lis
@@ -63,3 +65,6 @@ $ ->
         results.height wH - 62 - inputHeight
         true
     ).resize()
+
+    processMatches()
+    filterMatches()

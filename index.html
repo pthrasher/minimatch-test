@@ -5,102 +5,16 @@
     <title></title>
     <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-    <script type="text/javascript" src="bundle.js"></script>
-
-    <style type="text/css">
-        body {
-            font-family: 'Helvetica Neue', Helvetica, sans-serif;
-            padding: 0;
-            margin: 0;
-            overflow: hidden;
-        }
-
-        #minimatch {
-            margin: 10px;
-            padding: 1px;
-            border: 1px solid #333;
-            background: #fff;
-        }
-
-        .left {
-            float:left;
-            margin: 0 5px 0 10px;
-            padding: 0;
-        }
-
-        .right {
-            float:right;
-            margin: 0 10px 0 5px;
-            padding: 0;
-            border: 1px dashed #999;
-        }
-        textarea {
-            background: #fff;
-            border: 1px solid #333;
-            margin: 0;
-            padding: 5px;
-        }
-
-        .matches {
-            padding: 0;
-            margin: 0;
-            overflow: auto;
-        }
-
-        .matches ul {
-            list-style: none;
-            padding: 0;
-            margin: 5px;
-        }
-
-        .matches li {
-            color: #333;
-            font-size: 16px;
-            line-height: 20px;
-            font-weight: bold;
-            font-family: 'Helvetica Neue', Helvetica, sans-serif;
-        }
-
-        .footer {
-            width: 100%;
-            height: 30px;
-            padding: 0;
-            margin: 0;
-            font-size: 12px;
-        }
-
-        .footer .versions {
-            float: right;
-            display: inline-block;
-            margin-right: 10px;
-            line-height: 30px;
-        }
-
-        .footer .attrib {
-            float: left;
-            display: inline-block;
-            margin-left: 10px;
-            line-height: 30px;
-        }
-
-        .clearfix {
-            clear: both;
-        }
-
-        a {
-            color: #333;
-            text-decoration: underline;
-        }
-        a:hover {
-            text-decoration: none;
-        }
-
-    </style>
+    <script type="text/javascript" src="gh-pages/bundle.min.js"></script>
+    <link rel="stylesheet" href="gh-pages/styles.css" />
 </head>
 <body>
-    <input type="text" id="minimatch" placeholder="Type minimatch glob here..." />
+    <input type="text" value="*.bar" id="minimatch" placeholder="Type minimatch glob here..." />
     <div class="left">
-        <textarea id="source" placeholder="List filenames one per line here..."></textarea>
+        <textarea id="source" placeholder="List filenames one per line
+            here...">foo.bar
+bar.baz
+baz.bar</textarea>
     </div>
     <div class="right">
         <input type="text" id="filter" placeholder="Search..." />
@@ -108,9 +22,7 @@
             <ul><li>0 matches</li></ul>
         </div>
     </div>
-
     <div class="clearfix"></div>
-
     <div class="footer">
         <span class="attrib"><a href="http://pthra.sh/" target="_blank">Philip Thrasher</a> &copy;2013</span>
         <span class="versions"><strong>minimatch</strong>@0.2.12</span>

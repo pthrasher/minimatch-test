@@ -7,12 +7,17 @@ module.exports = (grunt) ->
                 files: [
                     'script.coffee'
                 ]
-                tasks: ['browserify', 'uglify']
+                tasks: ['build']
             html:
                 files: [
                     'index.html'
                 ]
-                tasks: ['htmlmin']
+                tasks: ['build']
+            less:
+                files: [
+                    'styles.less'
+                ]
+                tasks: ['build']
 
         nodestatic:
             server:
@@ -23,6 +28,16 @@ module.exports = (grunt) ->
             ghpages:
                 files:
                     'gh-pages/script.js': ['script.coffee']
+        smoosher:
+            ghpages:
+                files:
+                    'gh-pages/index.html': 'index.html'
+        less:
+            options:
+                yuicompress:true
+            ghpages:
+                files:
+                    'gh-pages/styles.css': ['styles.less']
         uglify:
             ghpages:
                 files:
@@ -33,7 +48,7 @@ module.exports = (grunt) ->
                 collapseWhitespace: true
             ghpages:
                 files:
-                    'gh-pages/index.html':'index.html'
+                    'gh-pages/index.html': 'gh-pages/index.html'
         copy:
             ghpages:
                 files: [
@@ -43,7 +58,13 @@ module.exports = (grunt) ->
             'gh-pages/bundle.js': ['script.coffee']
             options:
                 transform: ['coffeeify']
-        clean: ['gh-pages']
+        clean:
+            ghpages: ['gh-pages']
+            build: [
+                'gh-pages/bundle.js'
+                'gh-pages/styles.css'
+                'gh-pages/bundle.min.js'
+            ]
         exec:
             checkout_ghpages:
                 command: 'git checkout gh-pages'
@@ -55,15 +76,19 @@ module.exports = (grunt) ->
                 command: 'git checkout master'
             git_push_ghpages:
                 command: 'git push origin gh-pages'
-            create_ghpages:
-                command: 'mkdir gh-pages'
 
-    grunt.registerTask 'deploy', [
-        'clean'
-        'create_ghpages'
+    grunt.registerTask 'build', [
+        'clean:ghpages'
         'browserify'
+        'less'
         'uglify'
+        'smoosher'
         'htmlmin'
+        'clean:build'
+    ]
+    grunt.registerTask 'dev', ['build', 'nodestatic', 'watch']
+    grunt.registerTask 'deploy', [
+        'build'
         'checkout_ghpages'
         'copy'
         'git_add'
@@ -71,7 +96,10 @@ module.exports = (grunt) ->
         'git_push_ghpages'
         'checkout_master'
     ]
-    grunt.loadNpmTasks 'grunt-contrib-exec'
+    grunt.loadNpmTasks 'grunt-exec'
+    grunt.loadNpmTasks 'grunt-contrib-less'
+    grunt.loadNpmTasks 'grunt-html-smoosher'
+    grunt.loadNpmTasks 'grunt-browserify'
     grunt.loadNpmTasks 'grunt-contrib-htmlmin'
     grunt.loadNpmTasks 'grunt-contrib-clean'
     grunt.loadNpmTasks 'grunt-contrib-watch'
