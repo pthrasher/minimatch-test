@@ -89,12 +89,12 @@ module.exports = (grunt) ->
     grunt.registerTask 'dev', ['build', 'nodestatic', 'watch']
     grunt.registerTask 'deploy', [
         'build'
-        'checkout_ghpages'
+        'exec:checkout_ghpages'
         'copy'
-        'git_add'
-        'git_commit'
-        'git_push_ghpages'
-        'checkout_master'
+        'exec:git_add'
+        'exec:git_commit'
+        'exec:git_push_ghpages'
+        'exec:checkout_master'
     ]
     grunt.loadNpmTasks 'grunt-exec'
     grunt.loadNpmTasks 'grunt-contrib-less'
