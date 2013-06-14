@@ -24,10 +24,6 @@ module.exports = (grunt) ->
                 options:
                     port: 8080
                     base: __dirname + '/gh-pages'
-        coffee:
-            ghpages:
-                files:
-                    'gh-pages/script.js': ['script.coffee']
         smoosher:
             ghpages:
                 files:
