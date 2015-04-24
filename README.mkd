@@ -9,4 +9,4 @@ I made this out of my own need to quickly test and see live results / updates
 for what things my gruntfile globs could / would match.
 
 
-[http://github.io/pthrasher/minimatch-test](http://github.io/pthrasher/minimatch-test)
+[http://pthrasher.github.io/minimatch-test/](http://pthrasher.github.io/minimatch-test/)
